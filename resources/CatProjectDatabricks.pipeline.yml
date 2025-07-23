@@ -1,0 +1,14 @@
+# The main pipeline for CatProjectDatabricks
+resources:
+  pipelines:
+    CatProjectDatabricks_pipeline:
+      name: CatProjectDatabricks_pipeline
+      catalog: workspace
+      schema: CatProjectDatabricks_${bundle.target}
+      serverless: true
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: ${workspace.file_path}/src
